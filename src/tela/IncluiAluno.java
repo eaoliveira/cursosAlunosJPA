@@ -1,7 +1,6 @@
 package tela;
 
 import java.io.IOException;
-import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -10,10 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.CursoDao;
 import bean.Mensagem;
+import dao.CursoDao;
 import modelo.Aluno;
-import modelo.Curso;
 
 @SuppressWarnings("serial")
 @WebServlet("/incluiAluno")
@@ -26,13 +24,13 @@ public class IncluiAluno extends HttpServlet {
 		// obtem os dados para salvar
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("email");
-		Integer curso = Integer.parseInt(request.getParameter("curso"));
+		Integer idcurso = Integer.parseInt(request.getParameter("curso"));
 		
 		// salva os dados
 		Aluno obj = new Aluno();
 		obj.setNome(nome);
 		obj.setEmail(email);
-		obj.setidCurso(curso);
+		obj.setNomeCurso(dao.getCurso(idcurso));
 		dao.adiciona(obj);
 		// prepara a mensagem para o usuario
 		Mensagem msg = new Mensagem();

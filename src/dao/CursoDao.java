@@ -29,7 +29,11 @@ public class CursoDao {
 	public void adiciona(Aluno obj) {
 		manager.merge(obj);
 	}
-
+	
+	public Curso getCurso(int id) {
+		return manager.find(Curso.class, id);
+	}
+	
 	public void remove(int id) {
 		Curso obj = manager.find(Curso.class, id);
 		if (obj != null)

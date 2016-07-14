@@ -37,14 +37,14 @@
 					<form id="form1" action="removeAluno" method="post">
 						<div id="flex">
 							<b data-col='1'>Del</b>
-							<b data-col='2'>Nome</b>
+							<b data-col='4'>Nome</b>
 							<b data-col='4'>Email</b>
 							<b data-col='4'>Curso</b>
 							<c:forEach var="obj" items="${aluno}">
 								<input type="checkbox" name="del" value="${obj.id}" data-col='1'>
-								<span data-col='2'><c:out value="${obj.nome}" /></span>
+								<span data-col='4'><c:out value="${obj.nome}" /></span>
 								<span data-col='4'><c:out value="${obj.email}" /></span>
-								<span data-col='4'><c:out value="${obj.idcurso}" /></span>
+								<span data-col='4'><c:out value="${obj.nomeCurso.nome}" /></span>
 							</c:forEach>
 						</div>
 						<div>

@@ -41,7 +41,7 @@
 							<b data-col='3'>Descrição</b>
 							<b data-col='3'>Inicio</b>
 							<b data-col='3'>Horas</b><br>
-							<c:forEach var="obj" items="${curso}">
+							<c:forEach var="obj" items="${cursos}">
 								<input type="checkbox" name="del" value="${obj.id}" data-col='1'>
 								<span data-col='2'><c:out value="${obj.nome}" /></span>
 								<span data-col='3'><c:out value="${obj.descr}" /></span>

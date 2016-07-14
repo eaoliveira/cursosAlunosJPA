@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Aluno {
@@ -14,7 +16,9 @@ public class Aluno {
 	private Integer Id;
 	private String nome;
 	private String email;
-	private Integer idcurso;
+	@ManyToOne //(fetch=FetchType.EAGER)
+	@JoinColumn(name="idcurso")
+	private Curso nomeCurso;
 
 	public Integer getId() {
 		return Id;
@@ -34,13 +38,12 @@ public class Aluno {
 		return this;
 	}
 	
-	public Integer getIdcurso() {
-		return idcurso;
+	public Curso getNomeCurso() {
+		return nomeCurso;
 	}
-	
-	public Aluno setidCurso(Integer id2) {
-		this.idcurso=id2;
-		return this;
+
+	public void setNomeCurso(Curso nomeCurso) {
+		this.nomeCurso = nomeCurso;
 	}
 
 		public String getEmail() {
