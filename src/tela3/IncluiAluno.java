@@ -1,4 +1,4 @@
-package tela;
+package tela3;
 
 import java.io.IOException;
 
@@ -9,38 +9,38 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.CursoDao;
 import bean.Mensagem;
+import dao.CursoDao;
+import modelo.Aluno;
 
 @SuppressWarnings("serial")
-@WebServlet("/removeAluno")
-public class RemoveAluno extends HttpServlet {
-
+@WebServlet("/incluiAluno")
+public class IncluiAluno extends HttpServlet {
 	@EJB
-	private CursoDao dao;	
-	
+	private CursoDao dao;
+
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// obtendo a lista dos ids para deletar
-		String[] ids = request.getParameterValues("del");
-		// Preparar a mensagem de saida para o usuario
+		// obtem os dados para salvar
+		String nome = request.getParameter("nome");
+		String email = request.getParameter("email");
+		Integer idcurso = Integer.parseInt(request.getParameter("curso"));
+		
+		// salva os dados
+		Aluno obj = new Aluno();
+		obj.setNome(nome);
+		obj.setEmail(email);
+		obj.setNomeCurso(dao.getCurso(idcurso));
+		dao.adiciona(obj);
+		// prepara a mensagem para o usuario
 		Mensagem msg = new Mensagem();
-		msg.setTitulo("Cadastro de Aluno");
-
-		// Tem algum registro selecionado
-		if (ids != null) {
-			for (String id : ids)
-				dao.removeAluno(Integer.parseInt(id));  // apaga o registro
-			
-			msg.setTexto("Sucesso na Deleção");
-			msg.setUrl("index.html");
-		} else { // Reclama que nada foi selecionado
-			msg.setTexto("Não foi selecionado nenhum registro");
-		}
-
+		msg.setTitulo("Cadastro de Alunos");
+		msg.setTexto("Sucesso na Inclusão");
+		msg.setUrl("index.html");
+		
 		// salva a mensagem
 		request.getSession().setAttribute("msg", msg);
-        // envia a mensagem
+		// envia a mensagem
 		response.sendRedirect("resultPage.jsp");
 	}
 
@@ -48,4 +48,5 @@ public class RemoveAluno extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+
 }

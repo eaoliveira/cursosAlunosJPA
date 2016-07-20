@@ -1,4 +1,4 @@
-package tela;
+package tela3;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import dao.CursoDao;
 import modelo.Curso;
 
-@WebServlet("/CadAluno")
-public class CadAluno extends HttpServlet {
+@WebServlet("/listaCurso")
+public class ListaCurso extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
@@ -27,6 +27,6 @@ public class CadAluno extends HttpServlet {
 		// salvar os cursos na sessao http
 		request.getSession().setAttribute("cursos", lista);
 		// redirecionar para o jsp que monta a lista
-		response.sendRedirect("cadAluno.jsp");
+		response.sendRedirect("listaCurso.jsp");
 	}
 }

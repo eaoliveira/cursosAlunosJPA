@@ -1,4 +1,4 @@
-package tela;
+package tela3;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,11 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.CursoDao;
-import modelo.Aluno;
 import modelo.Curso;
 
-@WebServlet("/ListaAlunos")
-public class ListaAluno extends HttpServlet {
+@WebServlet("/CadAluno")
+public class CadAluno extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
@@ -24,13 +23,10 @@ public class ListaAluno extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// obter a lista de cursos
-		List<Aluno> lista = dao.getAluno();
+		List<Curso> lista = dao.getCursos();
 		// salvar os cursos na sessao http
-		List<Curso> lista2 = dao.getCursos();
-		// salvar os cursos na sessao http
-		request.getSession().setAttribute("cursos", lista2);
-		request.getSession().setAttribute("aluno", lista);
+		request.getSession().setAttribute("cursos", lista);
 		// redirecionar para o jsp que monta a lista
-		response.sendRedirect("listaAluno.jsp");
+		response.sendRedirect("cadAluno.jsp");
 	}
 }

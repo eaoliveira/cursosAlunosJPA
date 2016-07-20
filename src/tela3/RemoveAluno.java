@@ -1,4 +1,4 @@
-package tela;
+package tela3;
 
 import java.io.IOException;
 
@@ -13,8 +13,8 @@ import dao.CursoDao;
 import bean.Mensagem;
 
 @SuppressWarnings("serial")
-@WebServlet("/removeCurso")
-public class RemoveCurso extends HttpServlet {
+@WebServlet("/removeAluno")
+public class RemoveAluno extends HttpServlet {
 
 	@EJB
 	private CursoDao dao;	
@@ -25,12 +25,12 @@ public class RemoveCurso extends HttpServlet {
 		String[] ids = request.getParameterValues("del");
 		// Preparar a mensagem de saida para o usuario
 		Mensagem msg = new Mensagem();
-		msg.setTitulo("Cadastro de Cursos");
+		msg.setTitulo("Cadastro de Aluno");
 
 		// Tem algum registro selecionado
 		if (ids != null) {
 			for (String id : ids)
-				dao.remove(Integer.parseInt(id));  // apaga o registro
+				dao.removeAluno(Integer.parseInt(id));  // apaga o registro
 			
 			msg.setTexto("Sucesso na Deleção");
 			msg.setUrl("index.html");

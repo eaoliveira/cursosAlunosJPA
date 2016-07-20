@@ -21,8 +21,8 @@
 			<div id="logo">Escola 1/2 Boca</div>
 			<nav role="navigation">
 				<ul id="mainNav">
-					<li><a href="gestCurso.html">Gestão de Cursos</a></li>
-			     	<li><a href="gestAluno.html">Gestão de Cursos</a></li>
+					<li><a href="gestCurso.xhtml">Gestão de Cursos</a></li>
+			     	<li><a href="gestAluno.xhtml">Gestão de Cursos</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -36,7 +36,7 @@
       				<div>
       					<c:choose>
     						<c:when test="${empty msg.url}">
-      							<input type="submit" id="submit" value="Voltar" formaction="index.html" >
+      							<input type="submit" id="submit" value="Voltar" formaction="index.xhtml" >
     						</c:when>
     						<c:otherwise>
       							<input type="submit" id="submit" value="Voltar" formaction="${msg.url}" >
