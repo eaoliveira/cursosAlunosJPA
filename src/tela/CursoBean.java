@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.persistence.PersistenceException;
 
 import dao.CursoDao;
 import modelo.Curso;
@@ -19,7 +20,7 @@ public class CursoBean {
 	private String data;
 	private String horas;
 	private Integer curso;
-	
+
 	public Integer getCurso() {
 		return curso;
 	}
@@ -50,21 +51,36 @@ public class CursoBean {
 	public void setHoras(String horas) {
 		this.horas = horas;
 	}
-	
-	
+
+
 	public List<Curso> getCursos(){
 		return dao.getCursos();
 	}
-	
+
 
 	public void salvar(){
-		Curso obj=new Curso();
-		obj.setNome(nome);
-		obj.setDescr(desc);
-		obj.setHoras(horas);
-		obj.setInicio(data);
-		dao.adiciona(obj);
-		FacesMessage msg = new FacesMessage("Curso Cadastrado");
+		FacesMessage msg;
+		try{
+			
+			Curso obj=new Curso();
+			obj.setNome(nome);
+			obj.setDescr(desc);
+			obj.setHoras(horas);
+			obj.setInicio(data);
+			dao.adiciona(obj);
+			
+			nome="";
+			desc="";
+			horas="";
+			data="";
+			
+			String txt= "Curso Cadastrado";
+			msg=new FacesMessage(FacesMessage.SEVERITY_INFO, txt, txt);
+		}catch(PersistenceException ex){
+			ex.printStackTrace();
+			String txt= "Erro ao Cadastrar";
+			msg=new FacesMessage(FacesMessage.SEVERITY_ERROR, txt, txt);
+			}
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		ctx.addMessage("form1", msg);
 	}
