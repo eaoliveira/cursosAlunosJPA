@@ -50,7 +50,7 @@
 							</c:forEach>
 						</div>
 						<div>
-							<input type="submit" id="submit" value="Incluir Cursos" formaction="cadCurso.html"
+							<input type="submit" id="submit" value="Incluir Cursos" formaction="cadCurso.xhtml"
 								formmethod="get">
 							<input type="submit" id="submitL" value="Deleta os Cursos">
 						</div>
@@ -59,7 +59,7 @@
 				<c:otherwise>
 					<form id="form1">
 						<div>
-							<input type="submit" id="submit" value="Incluir Cursos" formaction="cadCurso.html">
+							<input type="submit" id="submit" value="Incluir Cursos" formaction="cadCurso.xhtml">
 						</div>
 					</form>
 				</c:otherwise>
