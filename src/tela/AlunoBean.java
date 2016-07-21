@@ -1,13 +1,17 @@
 package tela;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.faces.model.ListDataModel;
 import javax.persistence.PersistenceException;
 
 import dao.CursoDao;
 import modelo.Aluno;
+import modelo.Curso;
 
 @ManagedBean
 public class AlunoBean {
@@ -16,6 +20,9 @@ public class AlunoBean {
 	private String nome;
 	private String email;
 	private Integer cursoId;
+	private ListDataModel<Aluno> alunos;
+	private boolean desativado=false;
+
 
 	public String getNome() {
 		return nome;
@@ -35,6 +42,21 @@ public class AlunoBean {
 	public void setCursoId(Integer cursoId) {
 		this.cursoId = cursoId;
 	}
+	@SuppressWarnings("unchecked")
+	public ListDataModel<Aluno> getAlunos(){
+		alunos= new ListDataModel<>(dao.getAluno());
+		return alunos;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void remove(){
+		for(Aluno item: (List<Aluno>) alunos.getWrappedData()){
+			if(item.isDel()){
+				dao.removeAluno(item.getId());
+			}
+		}
+	}
+	
 	public void salvar(){
 		FacesMessage msg;
 		

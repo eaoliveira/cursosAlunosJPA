@@ -48,18 +48,18 @@ public class CursoDao {
 	@SuppressWarnings("unchecked")
 	public List<Curso> getCursos() {
 		Query sql = manager.createQuery("from Curso", Curso.class);
-		logger.warning("sql: " + sql);
+		logger.warning("Cursos sql: " + sql);
 		List<Curso> lista = sql.getResultList();
-		logger.warning("lista: " + lista.size());
+		logger.warning("Cursos lista: " + lista.size());
 		return lista;
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Aluno> getAluno() {
 		Query sql = manager.createQuery("from Aluno", Aluno.class);
-		logger.warning("sql: " + sql);
+		logger.warning("Aluno sql: " + sql);
 		List<Aluno> lista = sql.getResultList();
-		logger.warning("lista: " + lista.size());
+		logger.warning("Aluno lista: " + lista.size());
 		return lista;
 	}
 

@@ -21,7 +21,7 @@
 			<div id="logo">Escola 1/2 Boca</div>
 			<nav role="navigation">
 				<ul id="mainNav">
-		<li><a href="gestCurso.xhtml">Gestão de Cursos</a></li>
+		          <li><a href="gestCurso.xhtml">Gestão de Cursos</a></li>
 			     	<li><a href="gestAluno.xhtml">Gestão de Aluno</a></li>
 						</ul>
 			</nav>

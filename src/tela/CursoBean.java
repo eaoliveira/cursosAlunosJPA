@@ -6,9 +6,11 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.faces.model.ListDataModel;
 import javax.persistence.PersistenceException;
 
 import dao.CursoDao;
+import modelo.Aluno;
 import modelo.Curso;
 
 @ManagedBean
@@ -20,7 +22,8 @@ public class CursoBean {
 	private String data;
 	private String horas;
 	private Integer curso;
-
+	private ListDataModel<Curso> cursos;
+	
 	public Integer getCurso() {
 		return curso;
 	}
@@ -53,11 +56,30 @@ public class CursoBean {
 	}
 
 
-	public List<Curso> getCursos(){
-		return dao.getCursos();
+//	public List<Curso> getCursos(){
+//		return dao.getCursos();
+	//}
+
+	public long getCursoCount(){
+		return dao.getCount();
 	}
-
-
+	
+	@SuppressWarnings("unchecked")
+	public ListDataModel<Curso> getCursos(){
+		cursos = new ListDataModel<>(dao.getCursos());
+		return cursos;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void remove(){
+		for(Curso item : (List<Curso>) cursos.getWrappedData()){
+			if(item.isDel()){
+				dao.remove(item.getId());
+			}
+		}
+	}
+	
+	
 	public void salvar(){
 		FacesMessage msg;
 		try{

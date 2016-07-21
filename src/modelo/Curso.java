@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Curso {
@@ -16,7 +17,9 @@ public class Curso {
 	private String descricao;
 	private String inicio;
 	private String horas;
-
+	@Transient
+	private boolean del=false;
+	
 	public Integer getId() {
 		return Id;
 	}
@@ -66,5 +69,15 @@ public class Curso {
 	public String toString() {
 		return "Id: " + Id + " nome: " + nome + " descr: " + descricao;
 	}
+
+	public boolean isDel() {
+		return del;
+	}
+
+	public void setDel(boolean del) {
+		this.del = del;
+	}
+	
+	
 
 }

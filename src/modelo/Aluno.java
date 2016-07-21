@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Aluno {
@@ -19,6 +20,8 @@ public class Aluno {
 	@ManyToOne //(fetch=FetchType.EAGER)
 	@JoinColumn(name="idcurso")
 	private Curso nomeCurso;
+	@Transient
+	private boolean del=false;
 
 	public Integer getId() {
 		return Id;
@@ -59,5 +62,14 @@ public class Aluno {
 	public String toString() {
 		return "Id: " + Id + " nome: " + nome + " descr: " + email;
 	}
+
+	public boolean isDel() {
+		return del;
+	}
+
+	public void setDel(boolean del) {
+		this.del = del;
+	}
+	
 
 }
