@@ -53,6 +53,7 @@ public class AlunoBean {
 		for(Aluno item: (List<Aluno>) alunos.getWrappedData()){
 			if(item.isDel()){
 				dao.removeAluno(item.getId());
+				break;
 			}
 		}
 	}

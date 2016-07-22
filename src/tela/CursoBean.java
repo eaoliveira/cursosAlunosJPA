@@ -75,6 +75,7 @@ public class CursoBean {
 		for(Curso item : (List<Curso>) cursos.getWrappedData()){
 			if(item.isDel()){
 				dao.remove(item.getId());
+				break;
 			}
 		}
 	}
